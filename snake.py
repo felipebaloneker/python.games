@@ -1,20 +1,16 @@
 import curses
 from random import randint
 
-#setup window
+#Setup window
 curses.initscr()
 win = curses.newwin(20,60,0,0) # y,x
 win.keypad(1)
 curses.noecho()
 curses.curs_set(0)
 win.border(0)
-win.nodelay(1) # -1
+win.nodelay(1)
 
-# add border 
-# border = [(0,20),()]
-# win.addch(border)
-
-# snake and food
+# Game Characters
 snake = [(4,10),(4,9),(4,8)]
 food = (10,20)
 
@@ -31,7 +27,7 @@ score = 0
 while key != ESC:
     win.addstr(0,2,'Score: ' +str(score)+'')
 
-    # snake moviment
+    # Snake moviment
     win.timeout(150 - (len(snake)// 5  + len(snake)//10 % 120 )) #increase speed
 
     prev_key = key
@@ -41,7 +37,7 @@ while key != ESC:
     if key not in [curses.KEY_LEFT, curses.KEY_RIGHT, curses.KEY_UP, curses.KEY_DOWN, ESC]:
         key = prev_key
     
-    # calculate the next coordinates
+    # Calculate the next coordinates
     y = snake[0][0]
     x = snake[0][1]
 
